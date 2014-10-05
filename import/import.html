@@ -1,11 +1,9 @@
-<h3>Information in console.</h3>
-
 <img src="beaker.jpg">
 <img src="beaker.jpg">
 
-// migrate first img node with import-correct path to window.document,
-// image 404
 <script>
+  // migrate first img node with import-correct path to window.document,
+  // image 404
   console.log('log format below is document: [img.getAttribute(`src`)] [img.src]');
   console.group('img');
   var img = document.currentScript.ownerDocument.querySelector('img');
@@ -16,10 +14,10 @@
   console.groupEnd();
 </script>
 
-// migrate first img node with import-correct path to window.document,
-// freeze the `src` property,
-// image 200
 <script>
+  // migrate first img node with import-correct path to window.document,
+  // freeze the `src` property,
+  // image 200
   console.group('img w/freeze');
   var img = document.currentScript.ownerDocument.querySelector('img');
   img.style.cssText = 'width: 300px; height: 200px';
@@ -35,10 +33,10 @@
   <img src="beaker.jpg">
 </template>
 
-// migrate template img node with import-correct path to window.document,
-// `src` property never correct,
-// image 404
 <script>
+  // migrate template img node with import-correct path to window.document,
+  // `src` property never correct,
+  // image 404
   console.group('template');
   var t = document.currentScript.ownerDocument.querySelector('template');
   var img = t.content.querySelector('img');
