@@ -1,0 +1,48 @@
+<img src="beaker.jpg">
+<img src="beaker.jpg">
+
+// migrate first img node with import-correct path to window.document,
+// image 404
+<script>
+  console.log('log format below is document: [img.getAttribute(`src`)] [img.src]');
+  console.group('img');
+  var img = document.currentScript.ownerDocument.querySelector('img');
+  img.style.cssText = 'width: 300px; height: 200px';
+  console.log('import: [%s] [%s]', img.getAttribute('src'), img.src);
+  document.body.appendChild(img);
+  console.log('window: [%s] [%s]', img.getAttribute('src'), img.src);
+  console.groupEnd();
+</script>
+
+// migrate first img node with import-correct path to window.document,
+// freeze the `src` property,
+// image 200
+<script>
+  console.group('img w/freeze');
+  var img = document.currentScript.ownerDocument.querySelector('img');
+  img.style.cssText = 'width: 300px; height: 200px';
+  console.log('import: [%s] [%s]', img.getAttribute('src'), img.src);
+  img.src = img.src; //<-- freezes the src
+  document.body.appendChild(img);
+  console.log('window: [%s] [%s]', img.getAttribute('src'), img.src);
+  console.groupEnd();
+</script>
+
+
+<template>
+  <img src="beaker.jpg">
+</template>
+
+// migrate template img node with import-correct path to window.document,
+// `src` property never correct,
+// image 404
+<script>
+  console.group('template');
+  var t = document.currentScript.ownerDocument.querySelector('template');
+  var img = t.content.querySelector('img');
+  img.style.cssText = 'width: 300px; height: 200px';
+  console.log('template: [%s] [%s]', img.getAttribute('src'), img.src);
+  document.body.appendChild(img);
+  console.log('window: [%s] [%s]', img.getAttribute('src'), img.src);
+  console.groupEnd();
+</script>
